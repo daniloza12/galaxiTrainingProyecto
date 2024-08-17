@@ -1,0 +1,2 @@
+# galaxiTrainingProyecto
+Proyecto de Alcancia
