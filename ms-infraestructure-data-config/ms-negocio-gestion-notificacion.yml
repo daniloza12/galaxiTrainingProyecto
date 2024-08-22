@@ -1,0 +1,87 @@
+server:
+   port: 8086
+
+spring:
+# MySQL
+  jpa:
+     show-sql: true
+#     hibernate:
+#       ddl-auto: create
+  datasource:
+    url: jdbc:mysql://localhost:3306/db_curs-000189_pedidos?createDatabaseIfNotExist=true&useSSL=true
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: admin123
+
+
+# Server Admin Client
+  boot:
+    admin:
+      client:
+        url: http://localhost:8890
+        instance:
+          management-base-url: http://localhost:${server.port:8086}
+
+# Server Registry Client
+eureka:
+   client:
+      fetch-registry: true
+      serviceUrl:
+         defaultZone: http://localhost:8889/eureka
+
+
+# Endpoints exposition
+management:
+  endpoints:
+    web:
+     exposure:
+       include: "*"
+     health:
+       show-details: always
+# Feign client         
+feign:
+  client:
+    config:
+      httpBinClient:
+        read-timeout: 2000
+        connect-timeout: 1000
+  circuitbreaker:
+    enabled: true
+    alphanumeric-ids:
+      enabled: true
+      
+# Resilience4j         
+resilience4j:
+  circuitbreaker:
+    configs:
+      default:
+        registerHealthIndicator: true
+    instances:
+      HttpBinClientgetBinWithDelayInSecondsint:
+        minimumNumberOfCalls: 10
+        failureRateThreshold: 50
+  timelimiter:
+    configs:
+      default:
+        timeoutDuration: 20s       
+
+# Azure Service Bus
+azure:
+ service:
+  connectionString: Endpoint=sb://nsalcanciadzg.servicebus.windows.net/;SharedAccessKeyName=keasdasd;SharedAccessKey=C0W0pct3ipDT8JsJC+5DBxIYeHIo4Ousy+ASbE99eho=
+  queueName: queuegtdz
+
+# Configuracion cuenta correo
+correo:
+ email: daniloza3107@gmail.com
+ password: pkgiiogcjacrisml
+
+# Login Spring Security
+spSecurity:
+ apiClient:
+  username: alcancias123
+  password: alcancias123pass
+
+# Microservices Client
+ms-negocio-gestion-cliente.url: http://localhost:8081/v1/clientes
+ms-negocio-gestion-cliente_backup.url: http://localhost:8087/v1/clientes

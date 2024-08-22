@@ -1,0 +1,10 @@
+spring:
+  application:
+    name: ms-negocio-gestion-alcancia
+
+  config:
+    import: optional:configserver:http://localhost:8888
+
+api:
+ url:
+  alcanciaMovimiento: http://localhost:8082/v1/cuentas/realizarMovimiento

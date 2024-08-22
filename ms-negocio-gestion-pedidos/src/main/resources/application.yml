@@ -1,0 +1,6 @@
+spring:
+  application:
+    name: ms-negocio-gestion-pedidos
+
+  config:
+    import: optional:configserver:http://localhost:8888

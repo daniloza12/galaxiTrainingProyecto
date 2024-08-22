@@ -1,0 +1,15 @@
+docker images
+
+docker ps
+
+
+docker pull mysql
+
+docker run --name mysql-dev-ms-curs-000189 -p3306:3306 -e MYSQL_ROOT_PASSWORD=123456 -d mysql:latest
+
+docker run --name mysql-dev-ms --network ms-pedidos-v1 -p3306:3306 -e MYSQL_ROOT_PASSWORD=123456 -d mysql:latest
+
+
+docker exec -it mysql-dev-ms-curs-000189 bash
+
+mysql -uroot -p123456

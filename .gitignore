@@ -1,0 +1,24 @@
+# Recursos a ingnorar
+Servers
+.metadata
+.settings
+target
+.classpath
+.project
+#.tern-project
+RemoteSystemsTempFiles
+/.metadata/
+
+PoCs/poc-kafka-consumer-v1/bin
+PoCs/poc-kafka-consumer-v1/target
+PoCs/poc-kafka-consumer-v1/.classpath
+PoCs/poc-kafka-consumer-v1/.project
+PoCs/poc-kafka-consumer-v1/.gradle
+PoCs/poc-kafka-consumer-v1/.settings
+
+PoCs/poc-kafka-producer-v1/bin
+PoCs/poc-kafka-producer-v1/target
+PoCs/poc-kafka-producer-v1/.classpath
+PoCs/poc-kafka-producer-v1/.project
+PoCs/poc-kafka-producer-v1/.gradle
+PoCs/poc-kafka-producer-v1/.settings
