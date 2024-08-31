@@ -37,9 +37,9 @@ public class ListenerBusService {
  	
     private ServiceBusProcessorClient processorClient;
     private final MessageService messageService;
-    //private final ClienteRepository clienteRepository;
-	//private final ClienteFeingService clienteRepository; 
-	private final FeingClienteServiceClient clienteRepository; 
+    //private final ClienteService clienteService;
+	//private final ClienteFeingService clienteService; 
+	private final FeingClienteServiceClient clienteService; 
 
 	
     @PostConstruct
@@ -91,7 +91,7 @@ public class ListenerBusService {
         movimientoDTO.setFechaMovimiento(LocalDate.parse(valuesMap.get("fechaMovimiento")));
         movimientoDTO.setNumeroOperacion(valuesMap.get("numeroOperacion"));
         
-       ClienteNotificacionDTO clienteDto = clienteRepository.findById(Long.parseLong(valuesMap.get("clienteId")));
+       ClienteNotificacionDTO clienteDto = clienteService.findById(Long.parseLong(valuesMap.get("clienteId")));
         
        // ResponseEntity<ClienteNotificacionDTO> responseAPi = clienteRepository.findByIdToNoyify(Long.parseLong(valuesMap.get("clienteId")));
        // ClienteNotificacionDTO clienteDto = responseAPi.getBody();

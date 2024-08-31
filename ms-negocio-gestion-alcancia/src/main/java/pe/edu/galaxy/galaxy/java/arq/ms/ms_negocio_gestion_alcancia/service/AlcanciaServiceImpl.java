@@ -16,7 +16,7 @@ import pe.edu.galaxy.galaxy.java.arq.ms.ms_negocio_gestion_alcancia.dto.Movimien
 import pe.edu.galaxy.galaxy.java.arq.ms.ms_negocio_gestion_alcancia.entity.AlcanciaEntity;
 import pe.edu.galaxy.galaxy.java.arq.ms.ms_negocio_gestion_alcancia.entity.MovimientoEntity;
 import pe.edu.galaxy.galaxy.java.arq.ms.ms_negocio_gestion_alcancia.mapper.AlcanciaMapper;
-import pe.edu.galaxy.galaxy.java.arq.ms.ms_negocio_gestion_alcancia.ms.CuentaRepository;
+import pe.edu.galaxy.galaxy.java.arq.ms.ms_negocio_gestion_alcancia.ms.CuentaService;
 import pe.edu.galaxy.galaxy.java.arq.ms.ms_negocio_gestion_alcancia.respository.AlcanciaRepository;
 import pe.edu.galaxy.galaxy.java.arq.ms.ms_negocio_gestion_alcancia.respository.MovimientoRepository;
 
@@ -28,7 +28,7 @@ public class AlcanciaServiceImpl implements AlcanciaService {
 	private final AlcanciaMapper alcanciaMapper;
 
 	private final MovimientoRepository movimientoRepository;
-	private final CuentaRepository cuentaRepository;
+	private final CuentaService cuentaService;
 	
 	private final BusService busService;
 
@@ -89,9 +89,9 @@ public class AlcanciaServiceImpl implements AlcanciaService {
 	 	movimientoRepository.save(movimiento);
 	 	
 		alcanciaEntity.setTotal(alcanciaEntity.getTotal().add(movimientoDTO.getMonto()));
-	 	alcanciaRepository.save(alcanciaEntity);	
+	 	alcanciaRepository.save(alcanciaEntity);	  
 	
-		CompletableFuture.runAsync( ()-> cuentaRepository.realizarCuentaMovimiento(movimientoDTO));
+		CompletableFuture.runAsync( ()-> cuentaService.realizarCuentaMovimiento(movimientoDTO));
 		CompletableFuture.runAsync( ()-> busService.sendMessage(movimientoDTO));
 	     
 	}

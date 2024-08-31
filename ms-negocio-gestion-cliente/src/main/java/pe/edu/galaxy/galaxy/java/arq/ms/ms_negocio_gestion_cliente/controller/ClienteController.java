@@ -73,7 +73,7 @@ public class ClienteController {
 	public ResponseEntity<ClienteNotificacionDTO> findByIdToNoyify(@PathVariable(value = "id", required = true) Long id) {
 		try {
 			
-			Optional<ClienteDTO> optClienteDTO = clienteService.findById(id);
+			Optional<ClienteDTO> optClienteDTO = clienteService.findById(id);  
 			if (isNull(optClienteDTO) || optClienteDTO.isEmpty()) {
 				return ResponseEntity.noContent().build();
 			}
