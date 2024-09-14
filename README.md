@@ -1,2 +1,1 @@
-# galaxiTrainingProyecto
-Proyecto de Alcancia
+# CURS-000189

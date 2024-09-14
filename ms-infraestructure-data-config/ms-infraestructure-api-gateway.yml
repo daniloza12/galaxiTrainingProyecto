@@ -1,0 +1,56 @@
+server:
+  port: 8887
+
+spring:
+    # Server Admin Client
+  boot:
+    admin:
+      client:
+          url: http://localhost:8890
+          instance:
+            management-base-url: http://localhost:${server.port:8887}
+# Mapeo de Microservicios
+  cloud:
+    gateway:
+      discovery:
+        locator:
+# Deshabilitar routes autogeneradas
+#           enabled: false
+          enabled: true
+        lowerCaseServiceId: true
+      route-refresh-listener:
+         enabled: false
+
+# Personalizado - Routers
+      routes:
+       - id: id-ms-notificacion
+         uri: lb://MS-NEGOCIO-GESTION-NOTIFICACION
+         predicates:
+         - Path=/ms-notificacion/**
+         filters:         
+         - RewritePath=/ms-notificacion/(?<path>.*), /$\{path}
+       - id: albums
+         uri: https://jsonplaceholder.typicode.com/albums
+         predicates:
+         - Path=/albums
+
+# Server Registry Client
+eureka:
+   client:
+      fetch-registry: true
+      serviceUrl:
+         defaultZone: http://localhost:8889/eureka
+
+# Activacion de endpoints         
+management:
+     endpoints:
+       web:
+         exposure:
+           include: '*'
+     endpoint:
+       gateway:
+ # Deshabilitar routes autogeneradas
+ #         enabled: false 
+          enabled: true
+       health:
+        show-details: always                  

@@ -23,5 +23,6 @@ public class MovimientoDTO {
  	private String nombre;
  	private String moneda;
  	private String nombreAlcancia;
+	private Long clienteId;
 
  }
